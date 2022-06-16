@@ -1,0 +1,26 @@
+./xmlchange CHARGE_ACCOUNT=P93300670,PROJECT=P93300670
+./xmlchange NTHRDS=1,NTASKS=72,OCN_ROOTPE=72,OCN_NTASKS=751
+./xmlchange POP_AUTO_DECOMP=FALSE,POP_BLCKX=9,POP_BLCKY=16,POP_DECOMPTYPE=spacecurve,POP_MXBLCKS=1,POP_NX_BLOCKS=36,POP_NY_BLOCKS=24
+
+./xmlchange DATM_PRESAERO=clim_1850
+
+./xmlchange CHARGE_ACCOUNT=P93300670,PROJECT=P93300670
+
+# Start const CO2 experiments at 1653-01-01 (1653=1958-5*61)
+# PI CO2=278 occurs in specified forcing at 1777.625
+# Start varying CO2 experiments at 1778-01-01
+# Run through end of 2017
+# Extension through end of 2021 done is subsequent experiment
+
+if [ $co2_forcing == 'const' ]; then
+    ./xmlchange RUN_TYPE=startup,RUN_STARTDATE=1653-01-01
+    ./xmlchange STOP_OPTION=nyears,STOP_N=5,RESUBMIT=0
+    # ./xmlchange CONTINUE_RUN=TRUE,STOP_N=15,RESUBMIT=7
+    ./xmlchange OCN_CO2_TYPE=constant,CCSM_CO2_PPMV=278.0
+fi
+if [ $co2_forcing == 'varying' ]; then
+    ./xmlchange RUN_TYPE=branch,RUN_REFDATE=1778-01-01
+    ./xmlchange RUN_REFCASE=$CASE_CO2_const
+    ./xmlchange STOP_OPTION=nyears,STOP_N=15,RESUBMIT=15
+    ./xmlchange OCN_CO2_TYPE=diagnostic,CCSM_CO2_PPMV=278.0
+fi

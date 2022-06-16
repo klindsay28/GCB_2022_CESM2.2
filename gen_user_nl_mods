@@ -1,0 +1,127 @@
+fname=user_nl_cice
+\grep -iq 'mods appended' $fname
+if [ $? -ne 0 ]; then
+    cat >> $fname <<-EOF
+		! mods appended to $fname
+		r_snw = 1.6
+		dt_mlt = 0.5
+		rsnw_mlt = 1000.
+	EOF
+fi
+sed -n '/mods appended/,$p' $fname
+
+echo
+
+fname=user_nl_pop
+\grep -iq 'mods appended' $fname
+if [ $? -ne 0 ]; then
+    cat >> $fname <<-EOF
+		! mods appended to $fname
+		kappa_isop_deep = 0.1
+
+		shf_strong_restore = 79.1
+		shf_strong_restore_ms = 79.1
+
+		sfwf_strong_restore = 0.56
+		sfwf_strong_restore_ms = 0.56
+
+		ndep_shr_stream_file = '/glade/p/cesmdata/cseg/inputdata/ocn/pop/gx1v6/forcing/ndep_ocn_SMYLE_w_nhx_emis_gx1v6_1652-2025_c201113.nc'
+	EOF
+    if [ $clim_forcing == 'const' ]; then
+        cat >> $fname <<-EOF
+			ndep_shr_stream_year_align = 1850
+			ndep_shr_stream_year_first = 1850
+			ndep_shr_stream_year_last = 1850
+			riv_flux_shr_stream_year_align = 1900
+			riv_flux_shr_stream_year_first = 1900
+			riv_flux_shr_stream_year_last = 1900
+		EOF
+     fi
+    if [ $clim_forcing == 'varying' ]; then
+        cat >> $fname <<-EOF
+			ndep_shr_stream_year_align = 1652
+			ndep_shr_stream_year_first = 1652
+			ndep_shr_stream_year_last = 2019
+			riv_flux_shr_stream_year_align = 1900
+			riv_flux_shr_stream_year_first = 1900
+			riv_flux_shr_stream_year_last = 2000
+		EOF
+    fi
+fi
+sed -n '/mods appended/,$p' $fname
+
+echo
+
+fname=user_nl_marbl
+if ! [ -f $fname ]; then touch $fname; fi
+\grep -iq 'mods appended' $fname
+if [ $? -ne 0 ]; then
+    cat >> $fname <<-EOF
+		! mods appended to $fname
+		caco3_bury_thres_omega_calc = 0.89
+		parm_init_POC_bury_coeff = 2.54
+		parm_init_POP_bury_coeff = 0.36
+		parm_init_bSi_bury_coeff = 1.53
+	EOF
+fi
+sed -n '/mods appended/,$p' $fname
+
+echo
+
+fname=user_nl_datm
+\grep -iq 'mods appended' $fname
+if [ $? -ne 0 ]; then
+    cat >> $fname <<-EOF
+		! mods appended to $fname
+	EOF
+    if [ $clim_forcing == 'const' ]; then
+        cat >> $fname <<-EOF
+			streams = "datm.streams.txt.CORE_IAF_JRA_1p4_2018.GCGCS.PREC 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.LWDN 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.SWDN 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.Q_10 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.SLP_ 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.T_10 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.U_10 1 1990 1990",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.V_10 1 1990 1990",
+				"datm.streams.txt.presaero.clim_1850 1 1850 1850",
+				"datm.streams.txt.co2tseries.omip 1750 1750 2019"
+		EOF
+    fi
+    if [ $clim_forcing == 'varying' ]; then
+        cat >> $fname <<-EOF
+			streams = "datm.streams.txt.CORE_IAF_JRA_1p4_2018.GCGCS.PREC 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.LWDN 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.SWDN 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.Q_10 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.SLP_ 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.T_10 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.U_10 1958 1958 2018",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.V_10 1958 1958 2018",
+				"datm.streams.txt.presaero.clim_1850 1652 1652 2019",
+				"datm.streams.txt.co2tseries.omip 1750 1750 2019"
+		EOF
+    fi
+fi
+sed -n '/mods appended/,$p' $fname
+
+echo
+
+fname=user_nl_drof
+\grep -iq 'mods appended' $fname
+if [ $? -ne 0 ]; then
+    cat >> $fname <<-EOF
+		! mods appended to $fname
+	EOF
+    if [ $clim_forcing == 'const' ]; then
+        cat >> $fname <<-EOF
+			streams = "drof.streams.txt.rof.iaf_jra_1p4_2018 1 1990 1990"
+		EOF
+    fi
+    if [ $clim_forcing == 'varying' ]; then
+        cat >> $fname <<-EOF
+			streams = "drof.streams.txt.rof.iaf_jra_1p4_2018 1958 1958 2018"
+		EOF
+    fi
+fi
+sed -n '/mods appended/,$p' $fname

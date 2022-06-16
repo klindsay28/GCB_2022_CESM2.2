@@ -1,0 +1,34 @@
+# settings common to all case creating bash notebooks
+
+REPO_ROOT=`pwd`
+
+CIMEROOT=/glade/work/klindsay/cesm2_tags/cesm2.2.0/cime
+
+CASEROOT_PARENT=/glade/work/$USER/GCB_2022_CESM2.2_cases
+
+COMPSET=GOMIPECOIAF_JRA-1p4-2018
+
+GRID=TL319_g17
+
+case $co2_forcing in
+    varying)
+        BGC=D
+        ;;
+    const)
+        BGC=C
+        ;;
+esac
+
+case $clim_forcing in
+    varying)
+        RAD=D
+        ;;
+    const)
+        RAD=C
+        ;;
+esac
+
+CO2_OPT=B${BGC}R${RAD}
+
+CASE=g.e22.$COMPSET.$GRID.GCB_2022.B${BGC}R${RAD}.$exp_no
+CASE_CO2_const=g.e22.$COMPSET.$GRID.GCB_2022.BCR${RAD}.$exp_no

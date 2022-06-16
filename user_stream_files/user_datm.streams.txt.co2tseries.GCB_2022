@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<file id="stream" version="1.0">
+<dataSource>
+   GENERIC
+</dataSource>
+<domainInfo>
+  <variableNames>
+    time  time
+    lon   lon
+    lat   lat
+    area  area
+    mask  mask
+  </variableNames>
+  <filePath>
+    REPO_ROOT/forcing
+  </filePath>
+  <fileNames>
+    fco2_datm_global_GCB_2022_1700-2022_c20220615.nc
+  </fileNames>
+</domainInfo>
+<fieldInfo>
+  <variableNames>
+    CO2   co2diag
+  </variableNames>
+  <filePath>
+    REPO_ROOT/forcing
+  </filePath>
+  <fileNames>
+    fco2_datm_global_GCB_2022_1700-2022_c20220615.nc
+  </fileNames>
+  <offset>
+    0
+  </offset>
+</fieldInfo>
+</file>
