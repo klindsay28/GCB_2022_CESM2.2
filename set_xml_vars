@@ -15,7 +15,7 @@
 if [ $co2_forcing == 'const' ]; then
     ./xmlchange RUN_TYPE=startup,RUN_STARTDATE=1653-01-01
     ./xmlchange STOP_OPTION=nyears,STOP_N=5,RESUBMIT=0
-    # ./xmlchange CONTINUE_RUN=TRUE,STOP_N=15,RESUBMIT=7
+    # ./xmlchange CONTINUE_RUN=TRUE,STOP_N=15,RESUBMIT=23
     ./xmlchange OCN_CO2_TYPE=constant,CCSM_CO2_PPMV=278.0
 fi
 if [ $co2_forcing == 'varying' ]; then
