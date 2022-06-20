@@ -32,3 +32,17 @@ Experiment Number | BC Year Range | BD Year Range
 Note that experiment 001 does not run a full 6th cycle of the JRA forcing, it stops at 2018-01-01.
 This is to ensure that cycling of forcing that would occur at the end of 2018 does not lead to
 using 1958 forcing at the end of 2018.
+
+## Throughput and Computational Cost
+
+The experiments are being run on 23 nodes.
+Note that this is larger than the default of 14 nodes for ocean-ice experiments on the gx1v7 grid.
+This enables a throughput of ~40 years per wall clock day on cheyenne.
+If experiments are run concurrently where possible,
+it will take 9-10 wall clock days to run all experiments,
+neglecting wait time in the queue.
+
+The computational cost of this configuration is ~500 core-hours per year on cheyenne.
+The total cost of all runs is approximately
+
+500 * \[ 2 * (2021-1653+1) + 2 * (2021-1778+1) \] = 613000 core-hours.
