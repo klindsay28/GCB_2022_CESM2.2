@@ -45,4 +45,4 @@ neglecting wait time in the queue.
 The computational cost of this configuration is ~500 core-hours per year on cheyenne.
 The total cost of all runs is approximately
 
-500 * \[ 2 * (2021-1653+1) + 2 * (2021-1778+1) \] = 613000 core-hours.
+500 * ( 2 * (2021-1653+1) + 2 * (2021-1778+1) ) = 613000 core-hours.
