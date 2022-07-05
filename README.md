@@ -22,7 +22,13 @@ In the GCB_2022 prescribed CO2 forcing, this value occurs mid-1777.
 So we start the BDR[CD] experiments at 1778-01-01,
 initializing them from the analogous BCR[CD] expriments at 1778-01-01.
 
-Each GCB_2022 experiment is done with 2 CESM experiments:
+Each RC GCB_2022 experiment is done with a 1 CESM experiment:
+
+Experiment Number | BC Year Range | BD Year Range
+:---------------: | :-----------: | :-----------:
+001               | 1653-2021     | 1778-2021
+
+Each RD GCB_2022 experiment is done with 2 CESM experiments:
 
 Experiment Number | BC Year Range | BD Year Range
 :---------------: | :-----------: | :-----------:

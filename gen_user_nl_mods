@@ -85,7 +85,7 @@ if [ $? -ne 0 ]; then
 				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.U_10 1 1990 1990",
 				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.V_10 1 1990 1990",
 				"datm.streams.txt.presaero.clim_1850 1 1850 1850",
-				"datm.streams.txt.co2tseries.omip 1750 1750 2019"
+				"datm.streams.txt.co2tseries.omip 1750 1750 2022"
 		EOF
     fi
     if [ $clim_forcing == 'varying' ]; then
