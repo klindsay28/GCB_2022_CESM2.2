@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<file id="stream" version="1.0">
+<dataSource>
+   GENERIC
+</dataSource>
+<domainInfo>
+  <variableNames>
+     time   time
+        xc     lon
+        yc     lat
+        area   area
+        mask   mask
+  </variableNames>
+  <filePath>
+     /glade/p/cesmdata/cseg/inputdata/lnd/dlnd7/JRA55
+  </filePath>
+  <fileNames>
+     domain.roff.JRA025.170111.nc
+  </fileNames>
+</domainInfo>
+<fieldInfo>
+   <variableNames>
+     rofl  rofl
+        rofi  rofi
+   </variableNames>
+   <filePath>
+     /glade/scratch/klindsay/jra55_links_2021
+   </filePath>
+   <fileNames>
+     JRA.v1.5.runoff.2020.210504.nc
+     JRA.v1.5.runoff.2021.210723.nc
+   </fileNames>
+   <offset>
+      0
+   </offset>
+</fieldInfo>
+</file>

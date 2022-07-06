@@ -41,7 +41,7 @@ if [ $? -ne 0 ]; then
         cat >> $fname <<-EOF
 			ndep_shr_stream_year_align = 1652
 			ndep_shr_stream_year_first = 1652
-			ndep_shr_stream_year_last = 2019
+			ndep_shr_stream_year_last = 2022
 			riv_flux_shr_stream_year_align = 1900
 			riv_flux_shr_stream_year_first = 1900
 			riv_flux_shr_stream_year_last = 2000
@@ -68,6 +68,15 @@ sed -n '/mods appended/,$p' $fname
 
 echo
 
+if [ $clim_forcing == 'varying' ]; then
+    jra_yr_lo=1958
+    jra_yr_hi=2018
+    if [ $exp_no == '002' ]; then
+        jra_yr_lo=2018
+        jra_yr_hi=2021
+    fi
+fi
+
 fname=user_nl_datm
 \grep -iq 'mods appended' $fname
 if [ $? -ne 0 ]; then
@@ -90,17 +99,23 @@ if [ $? -ne 0 ]; then
     fi
     if [ $clim_forcing == 'varying' ]; then
         cat >> $fname <<-EOF
-			streams = "datm.streams.txt.CORE_IAF_JRA_1p4_2018.GCGCS.PREC 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.LWDN 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.SWDN 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.Q_10 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.SLP_ 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.T_10 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.U_10 1958 1958 2018",
-				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.V_10 1958 1958 2018",
-				"datm.streams.txt.presaero.clim_1850 1652 1652 2019",
-				"datm.streams.txt.co2tseries.omip 1750 1750 2019"
+			streams = "datm.streams.txt.CORE_IAF_JRA_1p4_2018.GCGCS.PREC $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.LWDN $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.GISS.SWDN $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.Q_10 $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.SLP_ $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.T_10 $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.U_10 $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.CORE_IAF_JRA_1p4_2018.NCEP.V_10 $jra_yr_lo $jra_yr_lo $jra_yr_hi",
+				"datm.streams.txt.presaero.clim_1850 1652 1652 2022",
+				"datm.streams.txt.co2tseries.omip 1750 1750 2022"
 		EOF
+        if [ $exp_no == '002' ]; then
+            cat >> $fname <<-EOF
+				taxmode = "extend", "extend", "extend", "extend", "extend", "extend", "extend",
+					"extend", "extend", "extend"
+			EOF
+        fi
     fi
 fi
 sed -n '/mods appended/,$p' $fname
@@ -120,8 +135,13 @@ if [ $? -ne 0 ]; then
     fi
     if [ $clim_forcing == 'varying' ]; then
         cat >> $fname <<-EOF
-			streams = "drof.streams.txt.rof.iaf_jra_1p4_2018 1958 1958 2018"
+			streams = "drof.streams.txt.rof.iaf_jra_1p4_2018 $jra_yr_lo $jra_yr_lo $jra_yr_hi"
 		EOF
+        if [ $exp_no == '002' ]; then
+            cat >> $fname <<-EOF
+				taxmode = "extend"
+			EOF
+        fi
     fi
 fi
 sed -n '/mods appended/,$p' $fname

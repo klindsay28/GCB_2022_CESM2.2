@@ -10,3 +10,9 @@ if [ $clim_forcing == 'const' ]; then
     cp $REPO_ROOT/user_stream_files/clim_forcing_const/user_datm.streams.txt.CORE_IAF_JRA_1p4_2018.* .
     cp $REPO_ROOT/user_stream_files/clim_forcing_const/user_drof.streams.txt.rof.iaf_jra_1p4_2018 .
 fi
+
+if [ $exp_no == '002' ]; then
+    for fname in $REPO_ROOT/user_stream_files/exp_no_002/user_* ; do
+        sed -e "s^JRA55_DIR^$JRA55_DIR^g" $fname > "./$(basename $fname)"
+    done
+fi

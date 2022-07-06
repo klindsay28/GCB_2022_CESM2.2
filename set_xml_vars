@@ -9,18 +9,28 @@
 # Start const CO2 experiments at 1653-01-01 (1653=1958-5*61)
 # PI CO2=278 occurs in specified forcing at 1777.625
 # Start varying CO2 experiments at 1778-01-01
-# Run through end of 2017
-# Extension through end of 2021 done is subsequent experiment
+# For RD experiments:
+#   exp_no==001 runs through end of 2017
+#   exp_no==002 is extension through end of 2021
 
 if [ $co2_forcing == 'const' ]; then
-    ./xmlchange RUN_TYPE=startup,RUN_STARTDATE=1653-01-01
-    ./xmlchange STOP_OPTION=nyears,STOP_N=5,RESUBMIT=0
-    # ./xmlchange CONTINUE_RUN=TRUE,STOP_N=15,RESUBMIT=23
+    if [ $exp_no == '001' ]; then
+        ./xmlchange RUN_TYPE=startup,RUN_STARTDATE=1653-01-01
+        ./xmlchange STOP_OPTION=nyears,STOP_N=5,RESUBMIT=0
+        # ./xmlchange CONTINUE_RUN=TRUE,STOP_N=15,RESUBMIT=23
+    fi
     ./xmlchange OCN_CO2_TYPE=constant,CCSM_CO2_PPMV=278.0
 fi
 if [ $co2_forcing == 'varying' ]; then
-    ./xmlchange RUN_TYPE=branch,RUN_REFDATE=1778-01-01
-    ./xmlchange RUN_REFCASE=$CASE_CO2_const
-    ./xmlchange STOP_OPTION=nyears,STOP_N=15,RESUBMIT=15
+    if [ $exp_no == '001' ]; then
+        ./xmlchange RUN_TYPE=branch,RUN_REFDATE=1778-01-01
+        ./xmlchange RUN_REFCASE=$CASE_CO2_const
+        ./xmlchange STOP_OPTION=nyears,STOP_N=15,RESUBMIT=15
+    fi
     ./xmlchange OCN_CO2_TYPE=diagnostic,CCSM_CO2_PPMV=278.0
+fi
+if [ $exp_no == '002' ]; then
+    ./xmlchange RUN_TYPE=branch,RUN_REFDATE=2018-01-01
+    ./xmlchange RUN_REFCASE=$CASE_001
+    ./xmlchange STOP_OPTION=nyears,STOP_N=4,RESUBMIT=0
 fi
