@@ -1,11 +1,14 @@
 rm -Rf $JRA55_DIR
 mkdir $JRA55_DIR
 
+ln -s /glade/p/cesmdata/cseg/inputdata/ocn/jra55/v1.3_noleap/JRA.v1.3.*.TL319.2017.190528.nc $JRA55_DIR
 ln -s /glade/p/cesmdata/cseg/inputdata/ocn/jra55/v1.3_noleap/JRA.v1.3.*.TL319.2018.190528.nc $JRA55_DIR
 ln -s /glade/p/cesmdata/cseg/inputdata/ocn/jra55/v1.5_noleap/JRA.v1.5.*.TL319.2019.210504.nc $JRA55_DIR
 ln -s /glade/p/cesmdata/cseg/inputdata/ocn/jra55/v1.5_noleap/JRA.v1.5.*.TL319.2020.210504.nc $JRA55_DIR
 ln -s /glade/scratch/ssfcst/ocean_forcing/JRA.v1.5.*.TL319.2021.ssfcst.nc $JRA55_DIR
+ln -s /glade/scratch/ssfcst/ocean_forcing/JRA.v1.5.*.TL319.2022.ssfcst.nc $JRA55_DIR
 
+ln -s /glade/p/cesmdata/cseg/inputdata/lnd/dlnd7/JRA55/JRA.v1.4.runoff.2017.190214.nc $JRA55_DIR
 ln -s /glade/p/cesmdata/cseg/inputdata/lnd/dlnd7/JRA55/JRA.v1.4.runoff.2018.190214.nc $JRA55_DIR
 ln -s /glade/p/cesmdata/cseg/inputdata/ocn/jra55/v1.5_noleap/JRA.v1.5.runoff.2019.210505.nc $JRA55_DIR
 ln -s /glade/p/cesmdata/cseg/inputdata/ocn/jra55/v1.5_noleap/JRA.v1.5.runoff.2020.210504.nc $JRA55_DIR

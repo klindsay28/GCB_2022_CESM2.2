@@ -26,10 +26,12 @@
      JRA55_DIR
    </filePath>
    <fileNames>
+      JRA.v1.3.prec.TL319.2017.190528.nc
       JRA.v1.3.prec.TL319.2018.190528.nc
       JRA.v1.5.prec.TL319.2019.210504.nc
       JRA.v1.5.prec.TL319.2020.210504.nc
       JRA.v1.5.prec.TL319.2021.ssfcst.nc
+      JRA.v1.5.prec.TL319.2022.ssfcst.nc
    </fileNames>
    <offset>
       0
